@@ -1,31 +1,63 @@
-/// @Moving
-key_up = keyboard_check( vk_up );
-key_down = keyboard_check( vk_down );
-key_left = keyboard_check( vk_left );
-key_right = keyboard_check( vk_right );
+/// @desc Moving Player
+
+// Set movement, as soon as one of the arrow keys is pressed
+if ( keyboard_check_pressed( vk_up ) ) {
+	desired_dir = DIR.up;
+}
+if ( keyboard_check_pressed( vk_down ) ) {
+	desired_dir = DIR.down;
+}
+if ( keyboard_check_pressed( vk_left ) ) {
+	desired_dir = DIR.left;
+}
+if ( keyboard_check_pressed( vk_right ) ) {
+	desired_dir = DIR.right;
+}
+
+// Reset movement, if the key matching desired_dir is released
+if ( keyboard_check_released( vk_up ) && desired_dir == DIR.up ) {
+	desired_dir = DIR.none;
+}
+if ( keyboard_check_released( vk_down ) && desired_dir == DIR.down ) {
+	desired_dir = DIR.none;
+}
+if ( keyboard_check_released( vk_left ) && desired_dir == DIR.left ) {
+	desired_dir = DIR.none;
+}
+if ( keyboard_check_released( vk_right ) && desired_dir == DIR.right ) {
+	desired_dir = DIR.none;
+}
 
 if ( is_moving == false ) {
 	// Ready to move
-	if ( key_up ) {
-		is_moving = true;
-		to_move = grid_size;
-		hsp = 0;
-		vsp = -grid_speed;
-	} else if ( key_down ) {
-		is_moving = true;
-		to_move = grid_size;
-		hsp = 0;
-		vsp = grid_speed;
-	} else if ( key_left ) {
-		is_moving = true;
-		to_move = grid_size;
-		hsp = -grid_speed;
-		vsp = 0;
-	} else if ( key_right ) {
-		is_moving = true;
-		to_move = grid_size;
-		hsp = grid_speed;
-		vsp = 0;
+	if ( desired_dir == DIR.up ) {
+		if ( ! place_meeting( x, y-grid_size, obj_wall ) ) {
+			is_moving = true;
+			to_move = grid_size;
+			hsp = 0;
+			vsp = -grid_speed;
+		}
+	} else if ( desired_dir == DIR.down ) {
+		if ( ! place_meeting( x, y+grid_size, obj_wall ) ) {
+			is_moving = true;
+			to_move = grid_size;
+			hsp = 0;
+			vsp = grid_speed;
+		}
+	} else if ( desired_dir == DIR.left ) {
+		if ( ! place_meeting( x-grid_size, y, obj_wall ) ) {
+			is_moving = true;
+			to_move = grid_size;
+			hsp = -grid_speed;
+			vsp = 0;
+		}
+	} else if ( desired_dir == DIR.right ) {
+		if ( ! place_meeting( x+grid_size, y, obj_wall ) ) {
+			is_moving = true;
+			to_move = grid_size;
+			hsp = grid_speed;
+			vsp = 0;
+		}
 	}		
 } 
 

@@ -13,6 +13,16 @@
             "enumb": 0,
             "eventtype": 3,
             "m_owner": "c37eef45-e55a-4758-806f-605c31c05255"
+        },
+        {
+            "id": "bfa91e17-b618-48e7-aedb-9fa03117aaca",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "c37eef45-e55a-4758-806f-605c31c05255"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
@@ -114,6 +124,26 @@
             "resourceFilter": 1023,
             "value": "4",
             "varName": "grid_speed",
+            "varType": 1
+        },
+        {
+            "id": "7d498555-ff77-4f7f-af18-d9a701b462a5",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": [
+                "none",
+                "up",
+                "down",
+                "left",
+                "right"
+            ],
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "DIR.none",
+            "varName": "desired_dir",
             "varType": 1
         }
     ],
