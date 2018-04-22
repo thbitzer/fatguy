@@ -76,3 +76,11 @@ if ( is_moving == true ) {
 	}
 }
 	
+// Detect collision with collectable
+if ( place_meeting( x, y, obj_collectable ) ) {
+	coll = instance_nearest( x, y, obj_collectable );
+	with ( coll ) { 
+		global.game_score += score_for_object;
+		instance_destroy();
+	}
+}
