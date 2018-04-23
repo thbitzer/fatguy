@@ -29,6 +29,13 @@ if ( keyboard_check_released( vk_right ) && desired_dir == DIR.right ) {
 }
 
 if ( is_moving == false ) {
+	
+	// Do not continue, if collectables_left is zero
+	if ( global.collectables_left == 0 ) {
+		show_message( "You have collected everything! Score = " + string( global.game_score ) );
+		game_restart();
+	}
+		
 	// Ready to move
 	if ( desired_dir == DIR.up ) {
 		if ( ! place_meeting( x, y-grid_size, obj_wall ) ) {
@@ -81,6 +88,7 @@ if ( place_meeting( x, y, obj_collectable ) ) {
 	coll = instance_nearest( x, y, obj_collectable );
 	with ( coll ) { 
 		global.game_score += score_for_object;
+		global.collectables_left--;
 		instance_destroy();
 	}
 }
