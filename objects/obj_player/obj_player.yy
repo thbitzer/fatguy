@@ -145,26 +145,6 @@
             "value": "4",
             "varName": "grid_speed",
             "varType": 1
-        },
-        {
-            "id": "7d498555-ff77-4f7f-af18-d9a701b462a5",
-            "modelName": "GMObjectProperty",
-            "mvc": "1.0",
-            "listItems": [
-                "none",
-                "up",
-                "down",
-                "left",
-                "right"
-            ],
-            "multiselect": false,
-            "rangeEnabled": false,
-            "rangeMax": 10,
-            "rangeMin": 0,
-            "resourceFilter": 1023,
-            "value": "DIR.none",
-            "varName": "desired_dir",
-            "varType": 1
         }
     ],
     "solid": false,
