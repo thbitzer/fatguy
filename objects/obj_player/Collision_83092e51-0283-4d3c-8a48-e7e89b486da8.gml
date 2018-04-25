@@ -3,9 +3,15 @@
 global.game_live--;
 
 if ( global.game_live > 0 ) {
-	show_message( "You were hit by a ghost. Score = " + string( global.game_score ) );
-	room_restart();
+	show_message( "You were hit by a ghost. Score = " + string( global.player_score ) );
+	is_moving = false;
+	to_move = 0;
+	vsp = 0;
+	hsp = 0;
+	keyb_buffer_reset();
+	x = xstart;
+	y = ystart;
 } else {
-	show_message( "You lost all your lives. Score = " + string( global.game_score ) );
+	show_message( "GAME OVER. You lost all your lives. Score = " + string( global.player_score ) );
 	game_end();
 }
