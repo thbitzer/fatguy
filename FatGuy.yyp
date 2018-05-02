@@ -279,6 +279,14 @@
             }
         },
         {
+            "Key": "ceae1d16-75b6-41dd-ba5d-8bf99b4c0e40",
+            "Value": {
+                "id": "33509ab4-0083-486c-b2fc-751279234f74",
+                "resourcePath": "notes\\Moving.yy",
+                "resourceType": "GMNotes"
+            }
+        },
+        {
             "Key": "cf5fcd4b-9ed4-4119-ab20-141c42729da2",
             "Value": {
                 "id": "dda34ec3-0441-42c1-b863-059338daa7bd",
