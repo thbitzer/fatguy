@@ -139,6 +139,20 @@
             "value": "0",
             "varName": "vsp",
             "varType": 0
+        },
+        {
+            "id": "fa1628ef-e1e7-440a-a69c-f01bfdc9f8dd",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "MODE.home",
+            "varName": "mode",
+            "varType": 1
         }
     ],
     "solid": false,
