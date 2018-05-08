@@ -1,34 +1,90 @@
 /// @desc Move the ghost
 
+var dd = [ "-", "N", "E", "S", "W" ];
 
-// This is the code for a ghost after a move is complete
+// This is the code for a ghost after a move is complete (ie. ghost is not moving)
 if ( is_moving == false ) {
 	
+	// Act according to modes
 	if ( mode == MODE.home ) {
 		
+		/*
+		 * Enemy is inside spawning area
+		 */
+		 
+		// Determine distance to door
 		xdist = obj_door.x - x;
 		ydist = obj_door.y - y;
 		
+		s = "";
 		if ( xdist == 0 and ydist == 0 ) {
+			// We reached the door, switch mode now and continue desired_dir for one more step
 			mode = MODE.stray;
-		} else if ( abs( xdist ) >= abs( ydist ) ) {
-			if ( xdist > 0 ) {
-				desired_dir = DIR.east;
-			} else if ( xdist < 0 ) {
-				desired_dir = DIR.west;
-			}
+			s += ", dir: " + dd[desired_dir];
 		} else {
-			if ( ydist > 0 ) {
-				desired_dir = DIR.south;
-			} else if ( ydist < 0 ) {
-				desired_dir = DIR.north;
+		
+			// Still searching the door, determine move possibilities, then move
+			var free_pos = whats_free( x, y, obj_wall );
+			
+			// DEBUG for free_pos
+			if ( free_pos[DIR.north] ) s += "N" else s += "-";
+			if ( free_pos[DIR.south] ) s += "S" else s += "-";
+			if ( free_pos[DIR.east] ) s += "E" else s += "-";
+			if ( free_pos[DIR.west] ) s += "W" else s += "-";
+
+			// End of DEBUG
+			
+			// Determine desired horizontal direction
+			var desired_hor_dir = DIR.none;
+			if ( xdist > 0 ) {
+				desired_hor_dir = DIR.east;
+			} else if ( xdist < 0 ) {
+				desired_hor_dir = DIR.west;
 			}
+			s += ", hor: " + dd[desired_hor_dir];
+			
+			// Determine desired vertical direction
+			var desired_ver_dir = DIR.none;
+			if ( ydist > 0 ) {
+				desired_ver_dir = DIR.south;
+			} else if ( ydist < 0 ) {
+				desired_ver_dir = DIR.north;
+			}
+			s += ", ver: " + dd[desired_ver_dir];
+			
+			// Prioritize moving direction
+			desired_dir = DIR.none;
+			if ( free_pos[desired_hor_dir] and free_pos[desired_ver_dir] ) {
+				// Both desired directions are available, choose the most distant one
+				if ( ( abs( xdist ) >= abs( ydist ) ) ) {
+					desired_dir = desired_hor_dir;
+				} else {
+					desired_dir = desired_ver_dir;
+				}
+			} else if ( free_pos[desired_hor_dir] ) {
+				// Only horizontal movement in desired direction is possible
+				desired_dir = desired_hor_dir;
+			} else if ( free_pos[desired_ver_dir] ) {
+				// Only vertical movement in desired direction is possible
+				desired_dir = desired_ver_dir;
+			} else {
+				// No movement in desired direction is possible
+				desired_dir = DIR.none;
+			}
+			s += ", dir: " + dd[desired_dir];	
 		}
 		
 		show_debug_message( "X=" + string(xdist) + ", Y=" + string(ydist) );
+		show_debug_message( s );
 	
-	} else if ( mode == MODE.stray ) {
+	} else
 	
+	if ( mode == MODE.stray ) {
+	
+		/*
+		 * Enemy is just walking around (no target)
+		 */
+		 
 		var prev_dir = desired_dir;
 		if ( prev_dir = DIR.none ) {
 			desired_dir = irandom( 4 );
