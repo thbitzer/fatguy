@@ -38,34 +38,34 @@ if ( is_moving == false ) {
 		
 	// Ready to move
 	if ( keyb_buffer[0] == DIR.north ) {
-		if ( ! ( place_meeting( x, y-grid_size, obj_wall ) or 
-		         place_meeting( x, y-grid_size, obj_door ) ) ) {
+		if ( ! ( place_meeting( x, y-global.grid_size, obj_wall ) or 
+		         place_meeting( x, y-global.grid_size, obj_door ) ) ) {
 			is_moving = true;
-			to_move = grid_size;
+			to_move = global.grid_size;
 			hsp = 0;
 			vsp = -grid_speed;
 		}
 	} else if ( keyb_buffer[0] == DIR.south ) {
-		if ( ! ( place_meeting( x, y+grid_size, obj_wall ) or
-		         place_meeting( x, y+grid_size, obj_door ) ) ) {
+		if ( ! ( place_meeting( x, y+global.grid_size, obj_wall ) or
+		         place_meeting( x, y+global.grid_size, obj_door ) ) ) {
 			is_moving = true;
-			to_move = grid_size;
+			to_move = global.grid_size;
 			hsp = 0;
 			vsp = grid_speed;
 		}
 	} else if ( keyb_buffer[0] == DIR.west ) {
-		if ( ! ( place_meeting( x-grid_size, y, obj_wall ) or
-		         place_meeting( x-grid_size, y, obj_door ) ) ) {
+		if ( ! ( place_meeting( x-global.grid_size, y, obj_wall ) or
+		         place_meeting( x-global.grid_size, y, obj_door ) ) ) {
 			is_moving = true;
-			to_move = grid_size;
+			to_move = global.grid_size;
 			hsp = -grid_speed;
 			vsp = 0;
 		}
 	} else if ( keyb_buffer[0] == DIR.east ) {
-		if ( ! ( place_meeting( x+grid_size, y, obj_wall ) or
-		         place_meeting( x+grid_size, y, obj_door ) ) ) {
+		if ( ! ( place_meeting( x+global.grid_size, y, obj_wall ) or
+		         place_meeting( x+global.grid_size, y, obj_door ) ) ) {
 			is_moving = true;
-			to_move = grid_size;
+			to_move = global.grid_size;
 			hsp = grid_speed;
 			vsp = 0;
 		}
